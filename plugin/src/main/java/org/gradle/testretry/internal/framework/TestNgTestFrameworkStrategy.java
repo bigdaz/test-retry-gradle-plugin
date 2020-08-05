@@ -74,7 +74,7 @@ final class TestNgTestFrameworkStrategy implements TestFrameworkStrategy {
     private TestNGTestFramework createTestFramework(Test testTask, Instantiator instantiator, ClassLoaderCache classLoaderCache, DefaultTestFilter retriedTestFilter) {
         if (TestFrameworkStrategy.gradleVersionIsAtLeast("6.6")) {
             final ObjectFactory objectFactory = ((ProjectInternal) testTask.getProject()).getServices().get(ObjectFactory.class);
-            return new TestNGTestFramework(testTask, testTask.getClasspath(), retriedTestFilter, objectFactory);
+            return new TestNGTestFramework(testTask, retriedTestFilter, instantiator, classLoaderCache);
         } else {
             try {
                 Class<?> testNGTestFramework = TestNGTestFramework.class;
